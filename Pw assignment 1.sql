@@ -52,11 +52,11 @@ select*from customer;
 
 -- Q4 -- list different countries---
 
-select*from country;
+select distinct(country) from country;
 
 -- Q5 --list all the active customers --
 
-select first_name,last_name, active from customer;
+select first_name,last_name, active from customer where active like '1';
 
 -- Q6 list of all rentle IDs for customer with ID 1 
 
@@ -68,28 +68,30 @@ select title,description,rental_duration from film where rental_duration>5;
 
 -- Q8 list the total number of films whose replacement cost is grater then 15 and less then 20
 
-select title , description, replacement_cost from film where replacement_cost>15 and replacement_cost<20;
+select  count(film_id) as Total_no_of_film from film where replacement_cost>15 and replacement_cost<20;
 
--- Q9 find the number of films whose rental_rate is less than 1$
-select count(*) as numberoffilms from film where rental_rate<1;
 
--- Q10 display the count of unique first_name of actor
+-- Q9 display the count of unique first_name of actor
 select count(distinct first_name) as first_name from actor;
 
--- Q11  display the first 10 record  from customer table
+-- Q10 display the first 10 record  from customer table
 select*from customer limit 10;
 
--- Q12  display the first 3 record from the customer table whose first name starts with 'b'
+-- Q11  display the first 3 record from the customer table whose first name starts with 'b'
 select * from customer where first_name like 'b%' limit 3;
 
--- Q13 display the name of first 5 movies(films) which are rated 'G'
-select title,rating from film where rating = 'G';
+-- Q12 display the name of first 5 movies(films) which are rated 'G'
+select title,rating from film where rating = 'G' limit 5;
+
+-- 13 Find all customers whose first name starts with "a". 
+select first_name from customer where first_name like 'a%';
+
 
 -- Q14 find all customer whose firstt name end  with 'a'
 select first_name from customer where first_name like '%a';
 
 -- Q15 display the list of first 4 cities which start and end with 'a' 
-select city from city where city like 'a%a';
+select city from city where city like 'a%a' limit 4;
 
 -- Q16 find all customer whose first name have 'IN' in any position
 select first_name from customer where first_name like '%IN%';
@@ -114,7 +116,3 @@ select *from actor order by actor_id limit 50;
 
 -- Q23 get the distinct film id  from inventory table 
 select distinct film_id  from inventory;
-
-
-
-
